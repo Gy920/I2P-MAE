@@ -53,6 +53,11 @@ def get_args():
         default=None,
         help = 'test_svm for certain ckpt')
     parser.add_argument(
+        '--pretrain_refine', 
+        action='store_true', 
+        default=False, 
+        help = 'finetune modelnet with pretrained weight')
+    parser.add_argument(
         '--finetune_model', 
         action='store_true', 
         default=False, 

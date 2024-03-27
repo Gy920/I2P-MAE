@@ -152,9 +152,12 @@ def run_net(args, config, train_writer=None, val_writer=None):
                 points = train_transforms_scan(points)
             elif config.model['NAME'].split('_')[-1] == 'ModelNet40':
                 points = train_transforms_modelnet40(points)
-
+            
+            print("points ",points.shape)
+            print("label ",label.shape)
 
             ret = base_model(points)
+            print(ret.shape)
             loss, acc = base_model.module.get_loss_acc(ret, label)
 
             _loss = loss
@@ -230,9 +233,10 @@ def validate(base_model, test_dataloader, epoch, val_writer, args, config, logge
         for idx, (taxonomy_ids, model_ids, data) in enumerate(test_dataloader):
             points = data[0].cuda()
             label = data[1].cuda()
-
+            
             points = misc.fps(points, npoints)
-
+            print("points ",points)
+            print("labels ",label)
             logits = base_model(points)
             target = label.view(-1)
 

@@ -2,6 +2,7 @@ from tools import pretrain_run_net as pretrain
 from tools import test_svm_run_net_modelnet40 as test_svm_modelnet40
 from tools import test_svm_run_net_scan as test_svm_scan
 from tools import finetune_run_net as finetune
+from tools import pretrain_refine_run_net as pretrain_refine
 from tools import test_run_net as test_net
 from utils import parser, dist_utils, misc
 from utils.logger import *
@@ -89,6 +90,8 @@ def main():
         test_svm_scan(args, config)
     elif args.finetune_model == True:
         finetune(args, config, train_writer, val_writer)
+    elif args.pretrain_refine == True:
+        pretrain_refine(args, config, train_writer, val_writer)
     else:
         pretrain(args, config, train_writer, val_writer)
 

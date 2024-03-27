@@ -154,6 +154,7 @@ class I2P_MAE_ModelNet40(nn.Module):
             )
 
     def get_loss_acc(self, ret, gt):
+        print("ret ",ret.shape,gt.shape)
         loss = self.smooth_loss(ret, gt.long())
         pred = ret.argmax(-1)
         acc = (pred == gt).sum() / float(gt.size(0))
